@@ -7,13 +7,9 @@
     border: 0px solid #c59393;
     border-radius: .2rem;
     outline: none;
-    /* max-width: 30rem; */
-    /* margin-left: auto;
-    margin-right: auto; */
 }
 
 .searchBox {
-    /* flex: 1; */
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -39,8 +35,6 @@
     transition: border-color 0.25s;
     border-radius: 4px;
     margin-left: .3rem;
-    /* margin-right: .3rem; */
-    /* width: 100px; */
     max-width: 100%;
 
 }

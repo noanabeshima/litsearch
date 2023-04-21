@@ -3,7 +3,6 @@ import './SearchResults.css'
 import SearchBar from './SearchBar'
 
 
-
 function TopRow({sortBy, colToSortBy, sortOrder}) {
 
     function ColumnHeader({colIdx, colKey, colName, sortBy, sortOrder, colToSortBy=''}) {
@@ -114,89 +113,6 @@ function processPaper(paper) {
     return paper
 }
 
-// function SearchResults() {
-//     return (
-//         <></>
-//     )
-// }
-
-
-// function SearchResults({searchText}) {
-//     const [results, setResults] = useState([])
-//     const [colToSortBy, setColToSortBy] = useState('')
-//     const [sortOrder, setSortOrder] = useState('')
-
-//     function toggleSortBy(colKey) {
-//         if (colKey === colToSortBy) {
-//             const newSortOrder = sortOrder === 'ascending' ? 'descending' : 'ascending'
-//             setSortOrder(newSortOrder)
-//         } else {
-//             // add default sort order for each column later
-//             if (colKey === 'title') {
-//                 setSortOrder('ascending')
-//             } else {
-//                 setSortOrder('descending')
-//             }
-//         }
-//         setColToSortBy(colKey)
-//     }
-
-//     // sort
-//     useEffect(() => {
-//         // sort by colKey
-//         const sortedResults = [...results]
-
-//         sortedResults.sort((a, b) => {
-//             if (a[colToSortBy] < b[colToSortBy]) {
-//                 return sortOrder === 'ascending' ? -1 : 1
-//             } else if (a[colToSortBy] > b[colToSortBy]) {
-//                 return sortOrder === 'ascending' ? 1 : -1
-//             } else {
-//                 return 0
-//             }
-//         })
-//         setResults(sortedResults)
-//     }, [colToSortBy, sortOrder])
-
-//     // force re-render when results change
-//     useEffect(() => {
-//         setResults(results)
-//     }, [results])
-
-
-//     useEffect(() => {
-//         if (searchText === '') {
-//             return
-//         }
-//         // semantic scholar
-//         fetch(`https://api.semanticscholar.org/graph/v1/paper/search?query=${searchText.replace(/ /g, '+')}&limit=20&fields=title,authors,referenceCount,citationCount,url,venue,year,authors,externalIds`).then(res => res.json()).then(
-//             (result) => {
-//                 var papers = result['data']
-//                 // papers.forEach(paper => {
-//                 //     paper['authorString'] = getAuthorString(paper['authors'])
-//                 // })
-//                 for (var i = 0; i < papers.length; i++) {
-//                     papers[i] = processPaper(papers[i])
-
-//                     // convert to int
-//                     // papers[i]['citationCount'] = parseInt(papers[i]['citationCount'])
-//                     // papers[i]['referenceCount'] = parseInt(papers[i]['referenceCount'])
-
-//                 }
-//                 console.log(papers.slice(0, 5))
-//                 setResults(papers)
-//             }
-//         )
-//     }, [searchText])
-
-//     return (
-//         <div className="searchResultsContainer"> 
-//             <TopRow sortBy={toggleSortBy} colToSortBy={colToSortBy} sortOrder={sortOrder}/>
-//             {results.map((result, index) => <Result key={index} index={index} result={result}/>)}
-//         </div>
-//     )  
-// }
-
 function SearchResults({results, setResults}) {
     const [colToSortBy, setColToSortBy] = useState('')
     const [sortOrder, setSortOrder] = useState('')
@@ -259,18 +175,11 @@ export function KeywordSearch() {
             console.log('here')
             return
         }
-        // semantic scholar
         fetch(`https://api.semanticscholar.org/graph/v1/paper/search?query=${searchText.replace(/ /g, '+')}&limit=20&fields=title,authors,referenceCount,citationCount,url,venue,year,authors,externalIds`).then(res => res.json()).then(
             (result) => {
                 var papers = result['data']
-                // papers.forEach(paper => {
-                //     paper['authorString'] = getAuthorString(paper['authors'])
-                // })
                 for (var i = 0; i < papers.length; i++) {
                     papers[i] = processPaper(papers[i])
-
-         
-                    // papers[i]['referenceCount'] = parseInt(papers[i]['referenceCount'])
 
                 }
                 console.log(papers.slice(0, 5))
@@ -285,10 +194,6 @@ export function KeywordSearch() {
     } else {
         titleContainer = <div className="titleContainer">
             <div className="left">Results for "{searchText}"</div>
-            {/* <div className="flexFiller"></div>
-            <div className="right">
-                <div>{searchText}</div>
-            </div> */}
         </div>
     }
     

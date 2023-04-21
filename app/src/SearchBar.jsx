@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import './SearchBar.css'
 
     
@@ -13,14 +13,6 @@ export default function SearchBar() {
         setInputText('')
         
     }
-    // return (
-    //     <form>
-    //     <div className="searchBox">
-    //         <input className="searchBarInput" type="text" placeholder="Search for a keyword" value={inputText} onChange={e => setInputText(e.target.value)} />
-    //         <button className="searchButton" onClick={() => search(inputText)}>Search</button>
-    //     </div>
-    //     </form>
-    // )
     return (
         <form onSubmit={handleSubmit}>
             <div className="searchBox">

@@ -1,28 +1,15 @@
 
 .searchResultsContainer {
     display: grid;
-    /* flex-direction: column; */
-    /* margin-top: 2rem; */
     grid-template-columns: 3fr 1fr .95fr .95fr .8fr;
-    /* grid-template-rows: 1fr; */
-    /* grid-gap: 3rem;
-    column-gap: 3rem; */
-    /* width: 100%; */
     height: 100%;
-    /* height:  */
     margin-left: 3rem;
     margin-right: 3rem;
-    /* margin-top: 2rem; */
     padding-bottom: .4rem;
     padding-top: .4rem;
-    /* // add line to top and bottom */
     border-top: 1px solid #000000;
     border-bottom: 1px solid #000000;
     max-width: 41rem;    
-
-    /* margin-left: 1rem;
-    margin-right: 1rem; */
-
     margin-left: auto;
     margin-right: auto;
 }
@@ -31,17 +18,6 @@
     margin-left: 3rem;
     margin-right: 3rem;
     margin-bottom: 4rem;
-}
-
-.result {
-    /* grid-column: 1 / 3; */
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* flex: 1; */
-    /* justify-content: flex-start; */
-    /* text-align: left; */
-    /* margin-bottom: .4rem; */
-    /* width: 100% */
 }
 
 .authorCol {
@@ -54,8 +30,6 @@
 }
 
 a {
-    /* background-color: rgba(30, 30, 130, .1); */
-    /* color: #1e2e8e; */
     color: inherit;
     text-decoration: none;
 }
@@ -73,13 +47,10 @@ a {
 }
 
 .odd {
-    /* background-color: #c0baba; */
-    color: #000000;
 }
 
 .even {
     background-color: #e8d7d7;
-    color: #000000;
 }
 
 .columnHeader {
@@ -107,18 +78,7 @@ a {
     margin-top: 1.1rem;
     margin-bottom: .8rem;
     font-weight: 700;
-    /* color: rgb(47, 20, 38); */
-    /* background: #808080; */
-    /* color: white; */
-    /* padding: 1rem; */
-    /* margin: .5rem; */
-    /* padding-top: 1rem; */
-    /* padding-bottom: -.2rem; */
-    /* margin-bottom: -.2rem; */
-    
     text-align: left;
-    /* border-radius: .7rem; */
-    
 }
 
 .titleContainer .left {
@@ -126,9 +86,6 @@ a {
     text-align: left;
     padding-left: .6rem;
     font-size: 1.4rem;
-    /* margin-top: -.3rem; */
-    /* padding-top: 0rem; */
-    
 }
 
 .titleContainer .flexFiller {
@@ -143,15 +100,12 @@ a {
     flex: 2;
     text-align: right;
     padding-right: .6rem;
-    
-    /* height: 1.8rem; */
     overflow: hidden;
 
     
 }
 
 .header {
-    /* border-radius: 0.7rem; */
     padding: 1.6rem;
     padding-top: 1.3rem;
     padding-bottom: 2rem;
