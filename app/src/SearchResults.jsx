@@ -203,7 +203,7 @@ export function KeywordSearch() {
         titleContainer = <></>
     } else {
         titleContainer = <div className="titleContainer">
-            <div className="left">Results for "{searchText}"</div>
+            <div className="left unselectable">Results for "{searchText}"</div>
         </div>
     }
     
@@ -242,6 +242,10 @@ export function Citations() {
             )
         }
     }, [paperId])
+
+    function handleCitationClick() {
+        window.location.href = `/references?paperId=${paperId}&title=${title}&authorString=${authorString}&directUrl=${directUrl}`
+    }
             
 
     return (
@@ -249,7 +253,7 @@ export function Citations() {
         <div className="header">
             <SearchBar/>
             <div className="titleContainer">
-                <div className="left">Citations</div>
+                <div className="left unselectable" style={{cursor: "pointer" }} onClick={handleCitationClick}>Citations</div>
                 <div className="flexFiller"></div>
                 <div className="right">
                     <div><a href={directUrl} target="_blank">{title}</a></div>
@@ -286,14 +290,17 @@ export function References() {
             )
         }
     }, [paperId])
-            
+
+    function handleReferenceClick() {
+        window.location.href = `/citations?paperId=${paperId}&title=${title}&authorString=${authorString}&directUrl=${directUrl}`
+    }
 
     return (
         <> 
         <div className="header">
             <SearchBar/>
             <div className="titleContainer">
-                <div className="left">References</div>
+                <div className="left unselectable" style={{cursor: "pointer"}} onClick={handleReferenceClick}>References</div>
                 <div className="flexFiller"></div>
                 <div className="right">
                     <div><a href={directUrl} target="_blank">{title}</a></div>

@@ -11,8 +11,8 @@ export default function SearchBar() {
         console.log(inputText)
         window.location.href = '/search?q=' + inputText
         setInputText('')
-        
     }
+
     return (
         <form onSubmit={handleSubmit}>
             <div className="searchBox">
