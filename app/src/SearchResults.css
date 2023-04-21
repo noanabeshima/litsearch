@@ -1,7 +1,7 @@
 
 .searchResultsContainer {
     display: grid;
-    grid-template-columns: 3.6fr 1.8fr .72fr .72fr .81fr;
+    grid-template-columns: 3.6fr 1.8fr .88fr .88fr .9fr;
     height: 100%;
     margin-left: 3rem;
     margin-right: 3rem;
@@ -43,8 +43,8 @@ a {
     white-space: normal;
     overflow-wrap: break-word;
     text-align: left;
-    height: 4.5em;
-    line-height: 1.51em;
+    height: 4.8em;
+    line-height: 1.6em;
     padding: .4rem;
     padding-left: .4rem;
     padding-right: .4rem;
