@@ -96,6 +96,10 @@ function processPaper(paper) {
     }
     paper['urlSite'] = 'Scholar'
     
+    if (!paper['externalIds']) {
+        paper['externalIds'] = {}
+    }
+    
     if ('DOI' in paper['externalIds']) {
         const doi = paper['externalIds']['DOI']
         // check if doi is a url
