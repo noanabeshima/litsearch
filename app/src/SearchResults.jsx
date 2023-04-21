@@ -40,26 +40,26 @@ function Result({result, index}) {
         result['directUrl'] = result['url']
     }
 
-    function handleCitationClick(e) {
-        if (result['citationCount'] !== 0) {
-            window.location.href = `/citations?title=${result['title']}&authorString=${result['authorString']}&paperId=${result['paperId']}&directUrl=${result['directUrl']}`
-        }
+    let currentUrl = window.location.href
+    let originUrl = window.location.origin
+    let citeUrl = originUrl+`/citations?title=${result['title']}&authorString=${result['authorString']}&paperId=${result['paperId']}&directUrl=${result['directUrl']}`
+    let refUrl = originUrl+`/references?title=${result['title']}&authorString=${result['authorString']}&paperId=${result['paperId']}&directUrl=${result['directUrl']}`
+
+    if (result['citationCount'] === 0) {
+        citeUrl = currentUrl
+    }
+    if (result['referenceCount'] === 0) {
+        refUrl = currentUrl
     }
 
-    function handleRefClick(e) {
-        if (result['referenceCount'] !== 0) {
-            window.location.href = `/references?title=${result['title']}&authorString=${result['authorString']}&paperId=${result['paperId']}&directUrl=${result['directUrl']}`
-        }
-
-    }
     return (
         <>
             <div className={resultClassName} style={{'gridRowStart': index + 2, 'gridColumnStart': 1}}>
                 <div className='authorCol'><a href={result['url']} target="_blank">{result['title']}</a></div>
             </div>
             <div className={resultClassName} style={{'gridRowStart': index + 2, 'gridColumnStart': 2}}>{result['authorString']}</div>
-            <div className={resultClassName} style={{'gridRowStart': index + 2, 'gridColumnStart': 3}}><span className="citationCount" onClick={handleCitationClick}>{result['citationCount']}</span></div>
-            <div className={resultClassName} style={{'gridRowStart': index + 2, 'gridColumnStart': 4}}><span className="referenceCount" onClick={handleRefClick}>{result['referenceCount']}</span></div>
+            <div className={resultClassName} style={{'gridRowStart': index + 2, 'gridColumnStart': 3}}><a className="citationCount" href={citeUrl}>{result['citationCount']}</a></div>
+            <div className={resultClassName} style={{'gridRowStart': index + 2, 'gridColumnStart': 4}}><a className="referenceCount" href={refUrl}>{result['referenceCount']}</a></div>
             <div className={resultClassName} style={{'gridRowStart': index + 2, 'gridColumnStart': 5}}><a href={result['directUrl']} target="_blank">{result['urlSite']}</a></div>
             
         </>
