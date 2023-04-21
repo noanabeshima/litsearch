@@ -17,9 +17,17 @@ function TopRow({sortBy, colToSortBy, sortOrder}) {
         }
     
         const extraTextVisibility = colKey === colToSortBy ? 'visible' : 'hidden'
-    
+        
+        let className = 'resultItem odd columnHeader'
+        // check if colName is in a list of columns that should be right aligned
+        if (['Cites', 'Refs'].includes(colName)) {
+            className += ' alignRight'
+        }
+        if (colName == 'URL') {
+            className += ' urlCol'
+        }
         return (
-            <div className='resultItem odd columnHeader' onClick={handleClick} style={{'gridRowStart': 1, 'gridColumnStart': colIdx, 'fontWeight': 800}}>{colName}<span style={{visibility: extraTextVisibility}}>{extraText}</span></div>
+            <div className={className} onClick={handleClick} style={{'gridRowStart': 1, 'gridColumnStart': colIdx, 'fontWeight': 800}}>{colName}<span style={{visibility: extraTextVisibility}}>{extraText}</span></div>
         )
     }
 
