@@ -99,7 +99,7 @@ function processPaper(paper) {
     if (!paper['externalIds']) {
         paper['externalIds'] = {}
     }
-    
+
     if ('DOI' in paper['externalIds']) {
         const doi = paper['externalIds']['DOI']
         // check if doi is a url
@@ -186,7 +186,6 @@ export function KeywordSearch() {
 
     useEffect(() => {
         if (searchText === '' || searchText === null) {
-            console.log('here')
             return
         }
         fetch(`https://api.semanticscholar.org/graph/v1/paper/search?query=${searchText.replace(/ /g, '+')}&limit=100&fields=title,authors,referenceCount,citationCount,url,venue,year,authors,externalIds`).then(res => res.json()).then(
