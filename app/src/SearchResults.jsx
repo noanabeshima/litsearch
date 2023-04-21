@@ -95,19 +95,29 @@ function processPaper(paper) {
         paper['referenceCount'] = 0
     }
     paper['urlSite'] = 'Scholar'
-    if ('doi' in paper['externalIds']) {
+    
+    if ('DOI' in paper['externalIds']) {
+        const doi = paper['externalIds']['DOI']
+        // check if doi is a url
         if (doi.slice(0, 4) === 'http') {
-            paper['directUrl'] = paper['externalIds']['doi']
+            paper['directUrl'] = doi
             paper['urlSite'] = 'Unknown'
         } else {
-            paper['directUrl'] = 'https://sci-hub.se/' + paper['externalIds']['doi']
-            paper['urlSite'] = 'Sci-Hub'
+            paper['directUrl'] = 'https://sci-hub.se/' + doi
+            paper['urlSite'] = 'SciHub'
         }
     }
-    // see if arxiv in there
+    if (paper['externalIds']['ACL']) {
+        paper['directUrl'] = 'https://aclanthology.org/' + paper['externalIds']['ACL'] + '.pdf'
+        paper['urlSite'] = 'ACL'
+    }
     if (paper['externalIds']['ArXiv']) {
         paper['directUrl'] = 'https://arxiv.org/pdf/'+paper['externalIds']['ArXiv']+'.pdf'
         paper['urlSite'] = 'ArXiv'
+    }
+    if (paper['externalIds']['PubMedCentral']) {
+        paper['directUrl'] = 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC' + paper['externalIds']['PubMedCentral']
+        paper['urlSite'] = 'PubMed'
     }
 
     return paper
@@ -175,7 +185,7 @@ export function KeywordSearch() {
             console.log('here')
             return
         }
-        fetch(`https://api.semanticscholar.org/graph/v1/paper/search?query=${searchText.replace(/ /g, '+')}&limit=20&fields=title,authors,referenceCount,citationCount,url,venue,year,authors,externalIds`).then(res => res.json()).then(
+        fetch(`https://api.semanticscholar.org/graph/v1/paper/search?query=${searchText.replace(/ /g, '+')}&limit=100&fields=title,authors,referenceCount,citationCount,url,venue,year,authors,externalIds`).then(res => res.json()).then(
             (result) => {
                 var papers = result['data']
                 for (var i = 0; i < papers.length; i++) {
@@ -258,6 +268,7 @@ export function References() {
     let paperId = urlParams.get('paperId')
     let title = urlParams.get('title')
     let authorString = urlParams.get('authorString')
+    let directUrl = urlParams.get('directUrl')
 
     const [results, setResults] = useState([])
 
@@ -285,8 +296,8 @@ export function References() {
                 <div className="left">References</div>
                 <div className="flexFiller"></div>
                 <div className="right">
-                    <div>{title}</div>
-                    <div>{authorString}</div>
+                    <div><a href={directUrl} target="_blank">{title}</a></div>
+                    <div><a  href={directUrl} target="_blank">{authorString}</a></div>
                 </div>
             </div>
         </div>
